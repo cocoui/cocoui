@@ -25,7 +25,8 @@ gulp.task('css:demo', function () {
 });
 
 gulp.task('watch', function () {
-  gulp.watch('./scss/**/*.scss', ['css:demo']);
+  gulp.watch('./scss/**/*.scss', ['sass']);
+  gulp.watch('./dist/**/*.css', ['css:demo']);
 });
 
 gulp.task('serve', function () {
@@ -35,4 +36,4 @@ gulp.task('serve', function () {
   });
 });
 
-gulp.task('default', ['serve', 'css:demo', 'watch']);
+gulp.task('default', ['serve', 'sass', 'css:demo', 'watch']);
