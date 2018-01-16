@@ -21,12 +21,14 @@ gulp.task('sass', function () {
 
 gulp.task('css:demo', function () {
   return gulp.src('./dist/**/*.css')
-    .pipe(gulp.dest('./demo/css'));
+    .pipe(gulp.dest('./demo/css'))
+    .pipe(connect.reload());
 });
 
 gulp.task('watch', function () {
   gulp.watch('./scss/**/*.scss', ['sass']);
   gulp.watch('./dist/**/*.css', ['css:demo']);
+  gulp.watch('./demo/**/*.html', connect.reload());
 });
 
 gulp.task('serve', function () {

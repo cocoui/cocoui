@@ -18,13 +18,10 @@
     "url": "https://dharmeshpipariya.github.io/"
   },
   "scripts": {
-    "css": "npm-run-all --parallel css-lint* css-compile* --sequential css-prefix* css-minify*",
-    "css-compile": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 scss/cocoui.scss dist/css/cocoui.css && node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 scss/cocoui-grid.scss dist/css/cocoui-grid.css && node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 scss/cocoui-reboot.scss dist/css/cocoui-reboot.css",
-    "css-lint": "stylelint --syntax scss \"scss/**/*.scss\"",
-    "css-prefix": "postcss --config build/postcss.config.js --replace \"dist/css/*.css\" \"!dist/css/*.min.css\"",
-    "css-minify": "cleancss --level 1 --source-map --source-map-inline-sources --output dist/css/cocoui.min.css dist/css/cocoui.css && cleancss --level 1 --source-map --source-map-inline-sources --output dist/css/cocoui-grid.min.css dist/css/cocoui-grid.css && cleancss --level 1 --source-map --source-map-inline-sources --output dist/css/cocoui-reboot.min.css dist/css/cocoui-reboot.css",
-    "dist": "npm-run-all --parallel css js",
-    "watch": "npm-run-all --parallel watch-css watch-js"
+    "build": "npm run gulp sass",
+    "demo": "npm run gulp",
+    "deploy": "",
+    "test": ""
   },
   "style": "dist/cocoui.css",
   "sass": "scss/cocoui.scss",
