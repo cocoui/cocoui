@@ -1,44 +1,51 @@
-// stylelint-disable selector-no-qualifying-type
-
-//
-// Base styles
-//
-
 .btn {
+  position: relative;
   display: inline-block;
-  font-weight: $btn-font-weight;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
+  min-width: 88px;
+  margin: 0;
+  line-height: 36px;
+  padding: 0 16px;
+  border-radius: 2px;
+  box-sizing: border-box;
   user-select: none;
-  border: $btn-border-width solid transparent;
-  @include button-size($btn-padding-y, $btn-padding-x, $font-size-base, $btn-line-height, $btn-border-radius);
-  @include transition($btn-transition);
+  outline: none;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
+  text-decoration: none;
+  vertical-align: baseline;
+  text-align: center;
+  color: currentColor;
+  font-size: 14px;
+  font-weight: 500;
+  background: transparent;
+  box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+  transform: translate3d(0,0,0);
+  transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
+  background-color: #fff;
 
-  // Share hover and focus styles
-  @include hover-focus {
-    text-decoration: none;
+  &::-moz-focus-inner {
+    border: 0;
   }
 
   &:focus,
   &.focus {
     outline: 0;
-    box-shadow: $btn-focus-box-shadow;
   }
 
-  // Disabled comes first so active can properly restyle
   &.disabled,
   &:disabled {
-    opacity: $btn-disabled-opacity;
-    @include box-shadow(none);
+    color: rgba(0,0,0,.26);
+    background-color: rgba(0,0,0,.12);
+    box-shadow: none;
   }
 
-  // Opinionated: add "hand" cursor to non-disabled .btn elements
   &:not([disabled]):not(.disabled) {
     cursor: pointer;
   }
 
-  &:not([disabled]):not(.disabled):active,
+  @include ripple(white);
+  /*&:not([disabled]):not(.disabled):active,
   &:not([disabled]):not(.disabled).active {
     background-image: none;
     @include box-shadow($btn-active-box-shadow);
@@ -46,7 +53,7 @@
     &:focus {
       @include box-shadow($btn-focus-box-shadow, $btn-active-box-shadow);
     }
-  }
+  }*/
 }
 
 // Future-proof disabling of clicks on `<a>` elements
@@ -70,7 +77,8 @@ fieldset[disabled] a.btn {
   .btn-outline-#{$color} {
     @if $color == "light" {
       @include button-outline-variant($value, $gray-900);
-    } @else {
+    }
+    @else {
       @include button-outline-variant($value, $white);
     }
   }
@@ -105,7 +113,6 @@ fieldset[disabled] a.btn {
   &.disabled {
     color: $btn-link-disabled-color;
   }
-
   // No need for an active state here
 }
 
@@ -130,7 +137,6 @@ fieldset[disabled] a.btn {
 .btn-block {
   display: block;
   width: 100%;
-
   // Vertically space out multiple block buttons
   + .btn-block {
     margin-top: $btn-block-spacing-y;

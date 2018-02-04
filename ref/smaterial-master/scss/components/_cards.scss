@@ -1,0 +1,119 @@
+/**************************************
+ * Cards
+ *
+ * http://www.google.com/design/spec/components/cards.html#cards-usage
+ **************************************/
+
+.card {
+	@include material-shadow(2);
+	@include border-radius(if( $var == true, var(--border-size, $border-size), $border-size ) );
+	//margin: rem-calc(8px);
+	width: 100%;
+	padding: 0;
+	position: relative;
+	@include transition(box-shadow $transition-small-duration $standard-transition);
+	background: $card-background;
+
+	&:hover {
+		@include material-shadow(8);
+	}
+
+	@if( $amp == false ) {
+		@media #{$medium-only} {
+			@include transition(box-shadow $transition-medium-duration $standard-transition);
+		}
+
+		@media #{$medium-up} {
+			@include transition(box-shadow $transition-large-duration $standard-transition);
+			@include material-shadow(0);
+		}
+	}
+
+	&-actions {
+		padding: rem-calc(8px);
+
+		> * {
+			margin: 0 rem-calc(8px) rem-calc(4px) 0;
+
+			&:last-of-type {
+				margin: 0 0 rem-calc(4px) 0;
+			}
+		}
+	}
+
+	&-primary {
+		padding-left: rem-calc(16px);
+		padding-right: rem-calc(16px);
+		padding-top: rem-calc(24px);
+		padding-bottom: rem-calc(24px);
+		font-size: rem-calc(24px);
+
+		&-small {
+			font-size: rem-calc(14px);
+			padding-top: rem-calc(16px);
+		}
+
+		&-additional {
+			padding-bottom: rem-calc(16px);
+		}
+
+		#{$medium-up} {
+			padding: rem-calc(16px) rem-calc(24px);
+		}
+
+		.subhead-1 {
+			font-size: rem-calc(14px);
+			color: rgba($black, .38);
+			font-weight: 400;
+		}
+	}
+
+	&-supporting {
+		font-size: rem-calc(14px);
+		padding-top: rem-calc(16px);
+		padding-left: rem-calc(16px);
+		padding-right: rem-calc(16px);
+		padding-bottom: rem-calc(24px);
+
+		&-additional {
+			padding-bottom: rem-calc(16px);
+		}
+
+		@media #{$medium-up} {
+			padding-left: rem-calc(24px);
+			padding-right: rem-calc(24px);
+		}
+	}
+
+	img {
+		width: 100%;
+
+		&.card-top {
+			@include border-radius-top( if( $var == true, var(--border-size, $border-size), $border-size ) );
+		}
+
+		&.card-background {
+			@include border-radius( if( $var == true, var(--border-size, $border-size), $border-size ) );
+			height: 100%;
+		}
+
+		&.card-avatar {
+			float: left;
+			@include border-radius(50%);
+			margin: rem-calc(16px);
+			@include square( rem-calc(72px) - (rem-calc(16px) * 2 ) );
+		}
+	}
+
+	.card-content {
+		@include border-radius-bottom( if( $var == true, var(--border-size, $border-size), $border-size ) );
+		background: rgba($black, .54);
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+
+		div {
+			color: $white;
+		}
+	}
+}
